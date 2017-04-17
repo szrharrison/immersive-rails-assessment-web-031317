@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170310161150) do
+ActiveRecord::Schema.define(version: 20170417142205) do
+
+  create_table "appearances", force: :cascade do |t|
+    t.integer "episode_id"
+    t.integer "guest_id"
+    t.integer "rating"
+  end
 
   create_table "episodes", force: :cascade do |t|
     t.date     "date"

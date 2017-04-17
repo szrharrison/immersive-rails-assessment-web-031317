@@ -1,0 +1,18 @@
+<h1>Name: <%= @guest.name %></h1>
+<h3>Occupation: <%= @guest.occupation %></h3>
+
+<h5>Appeared on:</h5>
+<% @guest.episodes.each do |episode| %>
+  <p><%= link_to "Episode  #{episode.number} :  #{episode.date}", episode %></p>
+<% end %>
+<p><strong>Add Guest Appearance:</strong></p>
+<%= form_tag '/appearances' do %>
+  <%= hidden_field_tag :'appearance[guest_id]', "#{@guest.id}" %>
+  <%= label_tag :'appearance[episode_id]', 'Episode' %>
+  <%= select_tag :'appearance[episode_id]', options_from_collection_for_select( @episodes, 'id', 'date' ) %><br>
+  <br>
+  <%= label_tag :'appearance[rating]', 'Rating' %>
+  <%= number_field_tag :'appearance[rating]', nil, in: 1..5 %> <br>
+  <br>
+  <%= submit_tag 'Create Appearance' %>
+<% end %>
