@@ -6,6 +6,11 @@
   <p><%= link_to "Episode  #{episode.number} :  #{episode.date}", episode %></p>
 <% end %>
 <p><strong>Add Guest Appearance:</strong></p>
+<% if !!@appearance && !@appearance.errors.empty? %>
+  <% @appearance.errors.full_messages.each do |message| %>
+    <p><%= message %></p>
+  <% end %>
+<% end %>
 <%= form_tag '/appearances' do %>
   <%= hidden_field_tag :'appearance[guest_id]', "#{@guest.id}" %>
   <%= label_tag :'appearance[episode_id]', 'Episode' %>
